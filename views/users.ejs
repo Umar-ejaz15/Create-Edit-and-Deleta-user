@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- add tailwind cdn script -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <nav class="bg-zinc-900 text text-white p-10">
+      <ul class="flex gap-4">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/users">All users</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="main flex w-full h-screen bg-zinc-900 text-white">
+      <div class="users p-5 gap-7 flex-wrap flex">
+        <% if (users.length > 0) { %>
+            <% users.forEach((users)=>{%>
+                <div
+                  class="user relative py-10 w-52 h-72 p-4 flex flex-col items-center justify-around bg-zinc-800 rounded-xl"
+                >
+                  <div class="imgcontain w-full h-[60%] object-cover object-center">
+                    <img class="w-full h-full rounded-lg" src="<%=users.image%>" alt="" />
+                  </div>
+                  <div class="usercontent flex flex-start flex-col w-full relative">
+                    <h1 class="font-bold"><%=users.name%></h1>
+                    <p class="text-sm"><%=users.email%></p>
+                  </div>
+        
+                  <div class="button flex mt-5 mb-2 justify-between w-full">
+                    <a class="px-6 py-2 bg-blue-700 rounded-lg" href="/update/<%= users._id %>">edit</a>
+                    <a class="px-6 py-2 bg-red-700 rounded-lg" href="/delete/<%=users._id%>">Delete</a>
+                  </div>
+                </div>
+                <% }) %>
+       <% } else {%>
+            <h1 class=" text-zinc-300 " >No Task yet</h1>
+      <%  } %>
+       
+      </div>
+    </div>
+  </body>
+</html>
